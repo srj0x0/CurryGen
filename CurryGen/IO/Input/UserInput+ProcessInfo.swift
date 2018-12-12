@@ -8,14 +8,14 @@ extension UserInput {
         
         ) -> UserInput? {
         
-        let payload = processInfo.environment
+        let payload = processInfo.arguments
         
         let curriedInit = curry(UserInput.init)
         
-        return payload.extract(InputFlag.count.rawValue, 3)
+        return payload.converted(InputFlag.count.rawValue)
             .flatMap(curriedInit)
-            .flatMap { payload.extract(InputFlag.output.rawValue).flatMap($0) }
-            .flatMap { payload.extract(InputFlag.needsUncurried.rawValue, false).flatMap($0) }
+            .flatMap { payload.converted(InputFlag.output.rawValue).flatMap($0) }
+            .flatMap { payload.converted(InputFlag.needsUncurried.rawValue).flatMap($0) }
         
     }
     

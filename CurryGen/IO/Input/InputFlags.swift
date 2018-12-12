@@ -1,11 +1,3 @@
 import Foundation
 
-enum InputFlag: String {
-    
-    case count = "C"
-    case output = "O"
-    case needsUncurried = "U"
-    
-    var flag: String { return rawValue }
-    
-}
+enum InputFlag: Int { case count = 1, output, needsUncurried }
